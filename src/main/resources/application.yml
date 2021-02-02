@@ -4,9 +4,9 @@ server:
     include-stacktrace: on_param
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/southsystem?createDatabaseIfNotExist=true
-    username: root
-    password: root
+    url: jdbc:mysql://cis9cbtgerlk68wl.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/kfbvr88i3ssk0zjc
+    username: xh1hgkisvc0puesp
+    password: w6ok46y5eiyk6znv
   jpa:
     hibernate:
       ddl-auto: update

@@ -11,6 +11,7 @@ import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
+import java.util.List;
 
 @Service
 public class AssociateService {
@@ -22,6 +23,10 @@ public class AssociateService {
 
     @Value("${url.api}")
     private String baseUrl;
+
+    public List<Associate> list() {
+        return associateRepository.findAll();
+    }
 
     public URI save(Associate associate) {
         validatedCpf(associate.getCpf());
