@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "voting-agenda")
@@ -47,5 +48,11 @@ public class VotingAgendaResource {
     public ResponseEntity<ResponseVotingEndedDTO> votingResult(@PathVariable("id") Long id) {
         ResponseVotingEndedDTO votingResult = votingAgendaService.votingResult(id);
         return ResponseEntity.ok(votingResult);
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<VotingAgenda>> list() {
+        List<VotingAgenda> votingAgendaList = votingAgendaService.list();
+        return ResponseEntity.ok(votingAgendaList);
     }
 }

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.net.URI;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -76,5 +77,9 @@ public class VotingAgendaService {
         }
 
         return votingAgenda;
+    }
+
+    public List<VotingAgenda> list() {
+        return votingAgendaRepository.findAll();
     }
 }
