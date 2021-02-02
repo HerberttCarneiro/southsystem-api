@@ -3,11 +3,13 @@ package br.com.southsystem.test.service;
 import br.com.southsystem.test.dto.ResponseVotingEndedDTO;
 import br.com.southsystem.test.dto.ResquestOpenVoteDTO;
 import br.com.southsystem.test.dto.ResquestVoteDTO;
+import br.com.southsystem.test.dto.ResquestVotingAgendaCreateDTO;
 import br.com.southsystem.test.exception.BadRequestException;
 import br.com.southsystem.test.model.Associate;
 import br.com.southsystem.test.model.Vote;
 import br.com.southsystem.test.model.VotingAgenda;
 import br.com.southsystem.test.repository.VotingAgendaRepository;
+import br.com.southsystem.test.util.Mapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,13 +24,14 @@ public class VotingAgendaService {
     final AssociateService associateService;
     final VoteService voteService;
 
-    public URI save(VotingAgenda votingAgenda) {
+    public URI save(ResquestVotingAgendaCreateDTO requestVotingAgendaCreateDTO) {
+        VotingAgenda votingAgenda = Mapper.mapper().map(requestVotingAgendaCreateDTO, VotingAgenda.class);
         votingAgenda = votingAgendaRepository.save(votingAgenda);
         return URI.create(votingAgenda.getId().toString());
     }
 
     public VotingAgenda openVote(Long id, ResquestOpenVoteDTO requestOpenVote) {
-        VotingAgenda votingAgenda = findByIdAndOpeningDateIsNull(id);
+        VotingAgenda votingAgenda = findByIdAndVotingNotOpened(id);
         setTimes(votingAgenda, requestOpenVote);
         votingAgendaRepository.save(votingAgenda);
 
@@ -59,7 +62,7 @@ public class VotingAgendaService {
                         "Not found or voting is closed"));
     }
 
-    public VotingAgenda findByIdAndOpeningDateIsNull(Long id) {
+    public VotingAgenda findByIdAndVotingNotOpened(Long id) {
         return votingAgendaRepository.findByIdAndOpeningDateIsNull(id)
                 .orElseThrow(() -> new BadRequestException(
                         "Not found or already opened"));

@@ -3,6 +3,7 @@ package br.com.southsystem.test.resource;
 import br.com.southsystem.test.dto.ResponseVotingEndedDTO;
 import br.com.southsystem.test.dto.ResquestOpenVoteDTO;
 import br.com.southsystem.test.dto.ResquestVoteDTO;
+import br.com.southsystem.test.dto.ResquestVotingAgendaCreateDTO;
 import br.com.southsystem.test.model.Vote;
 import br.com.southsystem.test.model.VotingAgenda;
 import br.com.southsystem.test.service.VotingAgendaService;
@@ -21,7 +22,7 @@ public class VotingAgendaResource {
     final VotingAgendaService votingAgendaService;
 
     @PostMapping()
-    public ResponseEntity<URI> save(@RequestBody @Valid VotingAgenda votingAgenda) {
+    public ResponseEntity<URI> save(@RequestBody @Valid ResquestVotingAgendaCreateDTO votingAgenda) {
         URI uri = votingAgendaService.save(votingAgenda);
         return ResponseEntity.created(uri).build();
     }
