@@ -15,9 +15,7 @@ Esse projeto foi criado com spring boot
  - Será informado a quantidade de votos sim e não, e a respota geral da votação.
  - Caso não tem votos ou empate a decisão será para reprovar (deixei dessa forma porque não tinha especificado na 
    solicitação) 
-   
-
- - Obs: Por questões de tempo deixei de implementar documentação de API (Swagger) e testes unitários
+  
 
 # O que foi utilizado?
 
