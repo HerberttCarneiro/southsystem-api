@@ -12,14 +12,12 @@ import javax.validation.ConstraintViolationException;
 import java.util.Optional;
 
 @DataJpaTest
-@DisplayName("Tests for Associate Repository")
 class AssociateRepositoryTest {
     @Autowired
     private AssociateRepository associateRepository;
 
     @Test
-    @DisplayName("Save creates associate when successful")
-    void save_PersistAssociate_WhenSuccessful() {
+    void savePersistAssociateWhenSuccessful() {
         Associate associateToBeSaved = AssociateCreator.createAssociateToBeSaved();
         Associate associateSaved = associateRepository.save(associateToBeSaved);
 
@@ -29,8 +27,7 @@ class AssociateRepositoryTest {
     }
 
     @Test
-    @DisplayName("Save throw ConstraintViolationException when cpf is empty")
-    void save_ThrowsConstraintViolationException_WhenCpfIsEmpty() {
+    void saveThrowsConstraintViolationExceptionWhenCpfIsEmpty() {
         Associate associate = new Associate();
 
         Assertions.assertThatExceptionOfType(ConstraintViolationException.class)
@@ -39,16 +36,14 @@ class AssociateRepositoryTest {
     }
 
     @Test
-    @DisplayName("Find by id return associate when successful")
-    void findById_ReturnEmpty_WhenAssociateNotFound() {
+    void findByIdReturnEmptyWhenAssociateNotFound() {
         Optional<Associate> associateOptional = associateRepository.findById(123L);
 
         Assertions.assertThat(associateOptional).isEmpty();
     }
 
     @Test
-    @DisplayName("Find by id return empty when no associate is found")
-    void findById_ReturnAssociate_WhenSuccessful() {
+    void findByIdReturnAssociateWhenSuccessful() {
         Associate associateToBeSaved = AssociateCreator.createAssociateToBeSaved();
         Associate associateSaved = associateRepository.save(associateToBeSaved);
 

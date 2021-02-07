@@ -37,7 +37,7 @@ class AssociateServiceTest {
     }
 
     @Test
-    void list_ReturnListOfAssociates_WhenSuccessful() {
+    void listReturnListOfAssociatesWhenSuccessful() {
         List<Associate> associates = associateService.list();
         Associate associate = AssociateCreator.createValidAssociate();
 
@@ -46,7 +46,7 @@ class AssociateServiceTest {
     }
 
     @Test
-    void save_ThrowsConstraintViolationException_WhenCpfIsEmpty() {
+    void saveThrowsConstraintViolationExceptionWhenCpfIsEmpty() {
         Associate associate = new Associate();
 
         Assertions.assertThatExceptionOfType(BadRequestException.class)

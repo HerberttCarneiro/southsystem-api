@@ -37,7 +37,7 @@ class AssociateResourceTest {
     }
 
     @Test
-    void list_ReturnListOfAssociates_WhenSuccessful() {
+    void listReturnListOfAssociatesWhenSuccessful() {
         List<Associate> associates = associateResource.list().getBody();
         Associate associate = AssociateCreator.createValidAssociate();
 
