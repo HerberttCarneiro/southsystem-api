@@ -17,14 +17,14 @@ public class AssociateResource {
     final AssociateService associateService;
 
     @PostMapping()
-    public ResponseEntity<URI> save(@RequestBody @Valid Associate associate) {
-        URI uri = associateService.save(associate);
-        return ResponseEntity.created(uri).build();
+    public ResponseEntity<Associate> save(@RequestBody @Valid Associate associate) {
+        associate = associateService.save(associate);
+        return ResponseEntity.ok(associate);
     }
 
     @GetMapping()
     public ResponseEntity<List<Associate>> list() {
-        List<Associate>  associates= associateService.list();
+        List<Associate> associates = associateService.list();
         return ResponseEntity.ok(associates);
     }
 }
